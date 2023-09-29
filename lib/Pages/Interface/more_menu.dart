@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:diner/Pages/User/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:mongo_dart/mongo_dart.dart' as Mongo;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MoreMenu extends StatefulWidget {
   const MoreMenu({super.key});
@@ -10,6 +13,27 @@ class MoreMenu extends StatefulWidget {
 }
 
 class _MoreMenuState extends State<MoreMenu> {
+  String? action = "";
+  Mongo.ObjectId? id;
+  void getData() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    // TODO: implement initState
+    setState(() {
+      action = prefs.getString('user');
+      if (action != null) {
+        id = Mongo.ObjectId.fromHexString(action!);
+      }
+    });
+
+    print(id);
+  }
+
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +59,15 @@ class _MoreMenuState extends State<MoreMenu> {
                         width: 400,
                         child: InkWell(
                           onTap: () {
-                            Navigator.pushNamed(context, '/login');
+                            if (action == null) {
+                              Navigator.pushNamed(context, '/login');
+                            } else {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Profile(
+                                          id: (id != null) ? id : null)));
+                            }
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,

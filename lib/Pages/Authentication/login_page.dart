@@ -87,6 +87,7 @@ class _LoginState extends State<Login> {
         var user = UserModel.fromJson(userData);
         print(user.id);
         await prefs.setString('user', user.id!.toHexString());
+        // print(prefs.getString('user'));
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => Profile(id: user.id)));
       } else {

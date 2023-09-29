@@ -21,8 +21,13 @@ class _BuyTokenState extends State<BuyToken> {
   void getData() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     // TODO: implement initState
-    action = prefs.getString('user');
-    id = Mongo.ObjectId.fromHexString(action!);
+    setState(() {
+      action = prefs.getString('user');
+      if (action != null) {
+        id = Mongo.ObjectId.fromHexString(action!);
+      }
+    });
+    print(id);
   }
 
   @override
@@ -48,7 +53,7 @@ class _BuyTokenState extends State<BuyToken> {
                   children: [
                     Divider(color: Colors.white),
                     Visibility(
-                      visible: (action == "") ? false : true,
+                      visible: (action == null) ? false : true,
                       child: GestureDetector(
                         onTap: () async {
                           final token =
