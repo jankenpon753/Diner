@@ -6,12 +6,14 @@ import 'dart:io';
 import 'package:diner/Pages/Services/global.dart';
 import 'package:diner/Pages/Services/register_data_model.dart';
 import 'package:diner/Pages/Services/token_model.dart';
+import 'package:diner/Pages/Services/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 
 class MongoDB {
   StreamController profileController = StreamController();
+  StreamController tokenController = StreamController();
 
   static var dataBase;
   static connect() async {
@@ -129,11 +131,11 @@ class MongoDB {
     }
   }
 
-  Future<void> getProfileData(ObjectId? id) async {
+  Future<void> getTokenList(ObjectId? id) async {
     try {
-      final userProfile =
-          await dataBase.collection('Register').findOne({"_id": id});
-      profileController.sink.add(userProfile);
+      final userData =
+          await dataBase.collection('RegisterUser').findOne({"_id": id});
+      tokenController.sink.add(userData);
     } catch (e) {
       return;
     }

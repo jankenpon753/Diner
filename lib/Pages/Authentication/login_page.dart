@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 // import 'package:diner/Pages/Services/auth.dart';
+import 'package:diner/Pages/Interface/home.dart';
 import 'package:diner/Pages/Services/connection.dart';
 import 'package:diner/Pages/Services/global.dart';
 // import 'package:diner/Pages/Services/register_data_model.dart';
@@ -88,8 +89,7 @@ class _LoginState extends State<Login> {
         print(user.id);
         await prefs.setString('user', user.id!.toHexString());
         // print(prefs.getString('user'));
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => Profile(id: user.id)));
+        Navigator.pushReplacementNamed(context, '/');
       } else {
         final SnackBar snackBar =
             SnackbarMessage("TypeError: Fields didn't Match!");

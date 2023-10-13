@@ -119,20 +119,30 @@ class _BuyTokenState extends State<BuyToken> {
                             snackbarKey.currentState?.showSnackBar(snackBar);
                           }
                         },
-                        child: SizedBox(
-                          height: 250,
-                          width: 400,
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                color: Colors.teal),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 8),
-                              child: Center(
-                                  child: Text("Buy Token",
-                                      style: TextStyle(fontSize: 24))),
-                            ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 30, vertical: 0),
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 100,
+                                width: 100,
+                                child: Image.network(
+                                    'https://paimon.moe/images/characters/full/kaedehara_kazuha.png'),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: Colors.teal),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 8),
+                                  child: Center(
+                                      child: Text("Buy Token",
+                                          style: TextStyle(fontSize: 24))),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),

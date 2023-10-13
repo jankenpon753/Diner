@@ -19,7 +19,7 @@ class _HomeState extends State<Home> {
   Mongo.ObjectId? id;
   void getID() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    objectid = await prefs.getString('user');
+    objectid = prefs.getString('user');
     if (objectid != null) {
       setState(() {
         id = Mongo.ObjectId.fromHexString(objectid!);
