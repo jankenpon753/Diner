@@ -109,6 +109,16 @@ class MongoDB {
     }
   }
 
+  static Future<void> addTokens(ObjectId? id, String token) async {
+    try {
+      await dataBase
+          .collection('RegisterUser')
+          .updateOne({"_id": id}, modify.addToSet('tokens', token));
+    } catch (e) {
+      return;
+    }
+  }
+
   static Future<Map<String, dynamic>?> getUserData(ObjectId? id) async {
     try {
       final userData =

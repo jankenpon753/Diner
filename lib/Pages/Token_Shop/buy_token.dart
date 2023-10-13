@@ -67,7 +67,7 @@ class _BuyTokenState extends State<BuyToken> {
                               var tokenString = data.id!.toHexString();
                               await MongoDB.changeTokenData(
                                   data.id, tokenString);
-                              await MongoDB.changeUserToken(id, tokenString);
+                              await MongoDB.addTokens(id, tokenString);
                               Dialog tokenDialog = Dialog(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(

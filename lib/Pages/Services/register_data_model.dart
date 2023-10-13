@@ -15,7 +15,7 @@ class RegisterDataModel {
   String email;
   String username;
   String password;
-  String tokens;
+  List<dynamic> tokens;
 
   RegisterDataModel({
     required this.name,
@@ -31,7 +31,7 @@ class RegisterDataModel {
         email: json["email"],
         username: json["username"],
         password: json["password"],
-        tokens: json["tokens"],
+        tokens: List<dynamic>.from(json["tokens"].map((x) => x)),
       );
 
   Map<String, dynamic> toJson() => {
@@ -39,6 +39,6 @@ class RegisterDataModel {
         "email": email,
         "username": username,
         "password": password,
-        "tokens": tokens,
+        "tokens": List<dynamic>.from(tokens.map((x) => x)),
       };
 }

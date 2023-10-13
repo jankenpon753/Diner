@@ -3,6 +3,8 @@
 import 'package:diner/Pages/Interface/interface_pages.dart';
 import 'package:diner/Pages/Token_Shop/token_shop_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:mongo_dart/mongo_dart.dart' as Mongo;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -13,6 +15,24 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int currentIndex = 0;
+  String? objectid = "";
+  Mongo.ObjectId? id;
+  void getID() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    objectid = await prefs.getString('user');
+    if (objectid != null) {
+      setState(() {
+        id = Mongo.ObjectId.fromHexString(objectid!);
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getID();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +60,13 @@ class _HomeState extends State<Home> {
           NavigationDestination(icon: Icon(Icons.more_horiz), label: 'More'),
         ],
       ),
-      body: <Widget>[Homepage(), BuyToken(), MoreMenu()][currentIndex],
+      body: <Widget>[
+        Homepage(
+          id: id,
+        ),
+        BuyToken(),
+        MoreMenu()
+      ][currentIndex],
     );
   }
 }

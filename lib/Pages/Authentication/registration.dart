@@ -103,7 +103,7 @@ class _RegistrationState extends State<Registration> {
       email: email,
       username: username,
       password: password,
-      tokens: "",
+      tokens: [],
     );
     await MongoDB.register(data);
     await Future.delayed(const Duration(milliseconds: 1000));

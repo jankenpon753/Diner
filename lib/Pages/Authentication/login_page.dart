@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-import 'package:diner/Pages/Services/auth.dart';
+// import 'package:diner/Pages/Services/auth.dart';
 import 'package:diner/Pages/Services/connection.dart';
 import 'package:diner/Pages/Services/global.dart';
-import 'package:diner/Pages/Services/register_data_model.dart';
+// import 'package:diner/Pages/Services/register_data_model.dart';
 import 'package:diner/Pages/Services/user_model.dart';
 import 'package:diner/Pages/User/profile.dart';
 import 'package:flutter/material.dart';
