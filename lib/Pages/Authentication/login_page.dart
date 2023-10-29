@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 // import 'package:diner/Pages/Services/auth.dart';
+
+import 'package:diner/Pages/Authentication/auth_pages.dart';
 import 'package:diner/Pages/Interface/home.dart';
 import 'package:diner/Pages/Services/connection.dart';
 import 'package:diner/Pages/Services/global.dart';
@@ -19,65 +21,98 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final uidController = TextEditingController();
   final passwordController = TextEditingController();
+  bool passwordVisible = false;
+
+  @override
+  void initState() {
+    super.initState();
+    passwordVisible = true;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-            child: Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: SizedBox(
-                    height: 900,
-                    width: 300,
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          TextFormField(
-                              controller: uidController,
-                              decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  label: Text('Username or Email'),
-                                  hintText: 'Username or Email')),
-                          SizedBox(height: 10),
-                          TextFormField(
-                              controller: passwordController,
-                              decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  label: Text('Password'),
-                                  hintText: 'Password')),
-                          SizedBox(height: 10),
-                          TextButton.icon(
-                              onPressed: () {
-                                Navigator.pushNamed(context, '/forgotMail');
-                              },
-                              icon: Icon(Icons.key_sharp),
-                              label: Text('Forgot password')),
-                          ElevatedButton.icon(
-                              onPressed: () async {
-                                _logIn(uidController.text,
-                                    passwordController.text);
-                              },
-                              icon: Icon(Icons.login_sharp),
-                              label: Text('Login')),
-                          // SizedBox(height: 10),
-                          TextButton.icon(
-                              onPressed: () {
-                                Navigator.pushNamed(context, '/register');
-                              },
-                              icon: Icon(Icons.create),
-                              label: Text('Create new account')),
-                          TextButton.icon(
-                              onPressed: () async {},
-                              icon: Icon(Icons.login_sharp),
-                              label: Text('Sign in anon')),
-                          // SizedBox(height: 10),
-                          TextButton.icon(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              icon: Icon(Icons.arrow_back),
-                              label: Text('Back'))
-                        ])))));
+        appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.close_rounded),
+          ),
+          title: Text("Sign in or Register"),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            TextFormField(
+              controller: uidController,
+              decoration: InputDecoration(
+                border: UnderlineInputBorder(),
+                hintText: 'Username or Email',
+              ),
+            ),
+            SizedBox(height: 10),
+            TextFormField(
+                controller: passwordController,
+                obscureText: passwordVisible,
+                decoration: InputDecoration(
+                  border: UnderlineInputBorder(),
+                  hintText: "Password",
+                  suffixIcon: IconButton(
+                    icon: Icon(passwordVisible
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off_outlined),
+                    onPressed: () {
+                      setState(
+                        () {
+                          passwordVisible = !passwordVisible;
+                        },
+                      );
+                    },
+                  ),
+                )),
+            SizedBox(height: 10),
+            ElevatedButton.icon(
+                onPressed: () async {
+                  _logIn(uidController.text, passwordController.text);
+                },
+                icon: Icon(Icons.login_sharp),
+                label: Text('Login')),
+            SizedBox(height: 50),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton.icon(
+                    onPressed: () {
+                      // Navigator.pop(context);
+                      showDialog(
+                          context: context,
+                          builder: (context) => Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(20, 140, 20, 140),
+                                child: Center(child: ForgotMail()),
+                              ));
+                    },
+                    icon: Icon(Icons.question_mark_outlined),
+                    label: Text('Forgot password')),
+                SizedBox(width: 30),
+                TextButton.icon(
+                    onPressed: () {
+                      // Navigator.pop(context);
+                      showDialog(
+                          context: context,
+                          builder: (context) => Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(20, 140, 20, 140),
+                                child: Center(child: Registration()),
+                              ));
+                    },
+                    icon: Icon(Icons.app_registration_outlined),
+                    label: Text('Register')),
+              ],
+            ),
+          ]),
+        ));
   }
 
   Future<void> _logIn(String username, String password) async {
@@ -89,7 +124,8 @@ class _LoginState extends State<Login> {
         print(user.id);
         await prefs.setString('user', user.id!.toHexString());
         // print(prefs.getString('user'));
-        Navigator.pushReplacementNamed(context, '/');
+        // Navigator.pushReplacementNamed(context, '/');
+        Navigator.pop(context);
       } else {
         final SnackBar snackBar =
             SnackbarMessage("TypeError: Fields didn't Match!");

@@ -13,9 +13,20 @@ class _AboutState extends State<About> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('About')),
+      appBar: AppBar(
+        title: Text('About'),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.close_rounded),
+        ),
+      ),
       body: Center(
-        child: Text('Hello & Welcome'),
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Image.asset('Assets/Images/fried-rice.png'),
+        ),
       ),
     );
   }

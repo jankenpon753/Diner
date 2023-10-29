@@ -48,16 +48,37 @@ class _HomeState extends State<Home> {
         selectedIndex: currentIndex,
         destinations: [
           NavigationDestination(
-            icon: Icon(Icons.home),
+            icon: Icon(
+              Icons.home,
+              color: Colors.orangeAccent[700],
+            ),
             label: 'Home',
-            selectedIcon: Icon(Icons.home_outlined),
+            selectedIcon: Icon(
+              Icons.home_outlined,
+              color: Colors.orangeAccent[700],
+            ),
           ),
           NavigationDestination(
-            icon: Icon(Icons.shop_2),
+            icon: Icon(
+              Icons.shop_2,
+              color: Colors.orangeAccent[700],
+            ),
             label: 'Shop',
-            selectedIcon: Icon(Icons.shop_2_outlined),
+            selectedIcon: Icon(
+              Icons.shop_2_outlined,
+              color: Colors.orangeAccent[700],
+            ),
           ),
-          NavigationDestination(icon: Icon(Icons.more_horiz), label: 'More'),
+          NavigationDestination(
+              icon: Icon(
+                Icons.more_horiz,
+                color: Colors.orangeAccent[700],
+              ),
+              selectedIcon: Icon(
+                Icons.more_horiz_outlined,
+                color: Colors.orangeAccent[700],
+              ),
+              label: 'More'),
         ],
       ),
       body: <Widget>[

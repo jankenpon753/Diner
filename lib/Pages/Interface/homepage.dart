@@ -20,7 +20,7 @@ class _HomepageState extends State<Homepage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer.periodic(Duration(seconds: 4), (timer) async {
+    Timer.periodic(Duration(seconds: 10), (timer) async {
       await mongoDB.getTokenList(widget.id);
     });
   }

@@ -124,11 +124,11 @@ class _BuyTokenState extends State<BuyToken> {
                               horizontal: 30, vertical: 0),
                           child: Column(
                             children: [
-                              Container(
-                                height: 100,
-                                width: 100,
-                                child: Image.network(
-                                    'https://paimon.moe/images/characters/full/kaedehara_kazuha.png'),
+                              SizedBox(
+                                height: 300,
+                                width: 400,
+                                child:
+                                    Image.asset('Assets/Images/fried-rice.png'),
                               ),
                               Container(
                                 decoration: BoxDecoration(
