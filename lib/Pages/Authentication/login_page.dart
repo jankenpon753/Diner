@@ -78,7 +78,7 @@ class _LoginState extends State<Login> {
                 },
                 icon: Icon(Icons.login_sharp),
                 label: Text('Login')),
-            SizedBox(height: 50),
+            SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

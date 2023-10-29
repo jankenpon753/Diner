@@ -27,7 +27,7 @@ class _MoreMenuState extends State<MoreMenu> {
       }
     });
 
-    print(id);
+    // print(id);
   }
 
   @override
@@ -42,7 +42,7 @@ class _MoreMenuState extends State<MoreMenu> {
       body: Center(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.fromLTRB(20, 25, 20, 30),
             child: Column(
               children: [
                 SizedBox(
@@ -50,7 +50,7 @@ class _MoreMenuState extends State<MoreMenu> {
                   width: 400,
                   child: Image.asset('Assets/Images/fried-rice.png'),
                 ),
-                Divider(color: Colors.white),
+                SizedBox(height: 40),
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -64,7 +64,7 @@ class _MoreMenuState extends State<MoreMenu> {
                                 context: context,
                                 builder: (context) => Padding(
                                   padding: const EdgeInsets.fromLTRB(
-                                      20, 140, 20, 140),
+                                      20, 100, 20, 100),
                                   child: Center(child: Login()),
                                 ),
                               );
@@ -83,7 +83,7 @@ class _MoreMenuState extends State<MoreMenu> {
                               Icon(
                                 Icons.person,
                                 size: 25,
-                                color: Colors.indigoAccent,
+                                color: Colors.orangeAccent[700],
                               ),
                               SizedBox(width: 10),
                               Text(
@@ -107,7 +107,7 @@ class _MoreMenuState extends State<MoreMenu> {
                               Icon(
                                 Icons.settings,
                                 size: 25,
-                                color: Colors.orange[800],
+                                color: Colors.orangeAccent[700],
                               ),
                               SizedBox(width: 10),
                               Text(
@@ -138,7 +138,7 @@ class _MoreMenuState extends State<MoreMenu> {
                               Icon(
                                 Icons.info_outlined,
                                 size: 25,
-                                color: Colors.limeAccent[400],
+                                color: Colors.orangeAccent[700],
                               ),
                               SizedBox(width: 10),
                               Text(
@@ -150,7 +150,6 @@ class _MoreMenuState extends State<MoreMenu> {
                         ),
                       )
                     ]),
-                Divider(color: Colors.white),
                 // Row(
                 //   mainAxisAlignment: MainAxisAlignment.center,
                 //   children: [
