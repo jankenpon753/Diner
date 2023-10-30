@@ -27,7 +27,8 @@ void main() async {
         '/forgotCode': (context) => ForgotCode(),
         '/resetPass': (context) => ResetPassword(),
         '/settings': (context) => Settings(),
-        '/about': (context) => About()
+        '/about': (context) => About(),
+        '/moreMenu': (context) => MoreMenu()
       },
     ),
   );

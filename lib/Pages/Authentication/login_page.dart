@@ -76,8 +76,19 @@ class _LoginState extends State<Login> {
                 onPressed: () async {
                   _logIn(uidController.text, passwordController.text);
                 },
-                icon: Icon(Icons.login_sharp),
-                label: Text('Login')),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orangeAccent[700],
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4)),
+                  foregroundColor: Colors.orange[900],
+                ),
+                icon: Icon(
+                  Icons.login_sharp,
+                  color: Colors.white,
+                  size: 20,
+                ),
+                label: Text('Login',
+                    style: TextStyle(color: Colors.white, fontSize: 17))),
             SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -93,8 +104,14 @@ class _LoginState extends State<Login> {
                                 child: Center(child: ForgotMail()),
                               ));
                     },
-                    icon: Icon(Icons.question_mark_outlined),
-                    label: Text('Forgot password')),
+                    icon: Icon(
+                      Icons.question_mark_outlined,
+                      color: Colors.white,
+                    ),
+                    label: Text(
+                      'Forgot password',
+                      style: TextStyle(color: Colors.white),
+                    )),
                 SizedBox(width: 30),
                 TextButton.icon(
                     onPressed: () {
@@ -107,8 +124,14 @@ class _LoginState extends State<Login> {
                                 child: Center(child: Registration()),
                               ));
                     },
-                    icon: Icon(Icons.app_registration_outlined),
-                    label: Text('Register')),
+                    icon: Icon(
+                      Icons.app_registration_outlined,
+                      color: Colors.white,
+                    ),
+                    label: Text(
+                      'Register',
+                      style: TextStyle(color: Colors.white),
+                    )),
               ],
             ),
           ]),
@@ -123,9 +146,16 @@ class _LoginState extends State<Login> {
         var user = UserModel.fromJson(userData);
         print(user.id);
         await prefs.setString('user', user.id!.toHexString());
-        // print(prefs.getString('user'));
-        // Navigator.pushReplacementNamed(context, '/');
-        Navigator.pop(context);
+        print(prefs.getString('user'));
+        Navigator.popAndPushNamed(context, '/');
+        // Navigator.of(context).pop();
+        // ignore: use_build_context_synchronously
+        // showDialog(
+        //     context: context,
+        //     builder: (context) => Padding(
+        //           padding: const EdgeInsets.fromLTRB(20, 140, 20, 140),
+        //           child: Center(child: Text("You are Logged in.")),
+        //         ));
       } else {
         final SnackBar snackBar =
             SnackbarMessage("TypeError: Fields didn't Match!");

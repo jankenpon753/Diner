@@ -57,11 +57,12 @@ class _BuyTokenState extends State<BuyToken> {
                       children: [
                         SizedBox(
                           height: 240,
-                          child: Image.asset('Assets/Images/fried-rice.png'),
+                          child: Image.asset('Assets/Images/diner.png'),
                         ),
+                        SizedBox(height: 10),
                         ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.orangeAccent[700],
+                              backgroundColor: Color.fromARGB(255, 0, 204, 255),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(4)),
                               foregroundColor: Colors.orange[900],
@@ -144,7 +145,7 @@ class _BuyTokenState extends State<BuyToken> {
                             child: Text(
                               "Buy Token",
                               style:
-                                  TextStyle(color: Colors.white, fontSize: 24),
+                                  TextStyle(color: Colors.black, fontSize: 24),
                             )),
                       ],
                     ),

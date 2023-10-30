@@ -46,9 +46,9 @@ class _MoreMenuState extends State<MoreMenu> {
             child: Column(
               children: [
                 SizedBox(
-                  height: 300,
-                  width: 400,
-                  child: Image.asset('Assets/Images/fried-rice.png'),
+                  height: 240,
+                  width: 200,
+                  child: Image.asset('Assets/Images/menu.png'),
                 ),
                 SizedBox(height: 40),
                 Column(
