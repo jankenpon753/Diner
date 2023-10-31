@@ -1,4 +1,4 @@
-#Mon Oct 30 22:50:49 BDT 2023
+#Tue Oct 31 18:06:17 BDT 2023
 base.0=/Users/md.tajim/Codes/Development/App/diner/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

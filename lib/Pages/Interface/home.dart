@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:diner/Pages/Interface/interface_pages.dart';
+import 'package:diner/Pages/Token_Shop/sell_token.dart';
 import 'package:diner/Pages/Token_Shop/token_shop_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:mongo_dart/mongo_dart.dart' as Mongo;
@@ -72,6 +73,16 @@ class _HomeState extends State<Home> {
           ),
           NavigationDestination(
               icon: Icon(
+                Icons.sell,
+                color: Colors.orangeAccent[700],
+              ),
+              selectedIcon: Icon(
+                Icons.sell_outlined,
+                color: Colors.orangeAccent[700],
+              ),
+              label: 'Sell'),
+          NavigationDestination(
+              icon: Icon(
                 Icons.more_horiz,
                 color: Colors.orangeAccent[700],
               ),
@@ -87,6 +98,7 @@ class _HomeState extends State<Home> {
           id: id,
         ),
         BuyToken(),
+        SellToken(),
         MoreMenu()
       ][currentIndex],
     );

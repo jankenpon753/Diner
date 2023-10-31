@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:diner/Pages/Services/connection.dart';
+import 'package:diner/Pages/Token_Shop/sell_token.dart';
 import 'package:flutter/material.dart';
 import 'package:diner/Pages/User/user_pages.dart';
 import 'package:diner/Pages/Interface/interface_pages.dart';
@@ -28,7 +29,8 @@ void main() async {
         '/resetPass': (context) => ResetPassword(),
         '/settings': (context) => Settings(),
         '/about': (context) => About(),
-        '/moreMenu': (context) => MoreMenu()
+        '/moreMenu': (context) => MoreMenu(),
+        '/sell_token': (context) => SellToken()
       },
     ),
   );

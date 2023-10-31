@@ -92,19 +92,15 @@ class _BuyTokenState extends State<BuyToken> {
                                             MainAxisAlignment.center,
                                         children: <Widget>[
                                           Center(
-                                            child: Text(
-                                              "Token Number: ",
-                                              style: TextStyle(fontSize: 16),
-                                            ),
+                                            child: Text("Token Number: ",
+                                                style: TextStyle(fontSize: 16)),
                                           ),
                                           SizedBox(
                                             height: 7,
                                           ),
                                           Center(
-                                            child: Text(
-                                              tokenString,
-                                              style: TextStyle(fontSize: 16),
-                                            ),
+                                            child: Text(tokenString,
+                                                style: TextStyle(fontSize: 16)),
                                           ),
                                           SizedBox(
                                             height: 17,
@@ -113,13 +109,11 @@ class _BuyTokenState extends State<BuyToken> {
                                               onPressed: () {
                                                 Navigator.of(context).pop();
                                               },
-                                              child: Text(
-                                                'Got It!',
-                                                style: TextStyle(
-                                                    color: Colors
-                                                        .orangeAccent[700],
-                                                    fontSize: 20.0),
-                                              ))
+                                              child: Text('Got It!',
+                                                  style: TextStyle(
+                                                      color: Colors
+                                                          .orangeAccent[700],
+                                                      fontSize: 20.0)))
                                         ],
                                       ),
                                     ),
