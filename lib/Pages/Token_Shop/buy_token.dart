@@ -68,6 +68,7 @@ class _BuyTokenState extends State<BuyToken> {
                               foregroundColor: Colors.orange[900],
                             ),
                             onPressed: () async {
+                              print("$id asd");
                               final token =
                                   TokenModel(token: "token", isScanned: false);
                               await MongoDB.tokenRegister(token);
