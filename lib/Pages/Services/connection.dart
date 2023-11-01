@@ -6,7 +6,6 @@ import 'dart:io';
 import 'package:diner/Pages/Services/global.dart';
 import 'package:diner/Pages/Services/register_data_model.dart';
 import 'package:diner/Pages/Services/token_model.dart';
-import 'package:diner/Pages/Services/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:mongo_dart/mongo_dart.dart';

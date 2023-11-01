@@ -44,9 +44,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> widgetOptions = <Widget>[
-      Homepage(
-        id: id,
-      ),
+      Homepage(id: id),
       BuyToken(),
       SellToken(),
       MoreMenu()
@@ -55,31 +53,27 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.white,
         selectedItemColor: Colors.orangeAccent[700],
-        showSelectedLabels: false,
+        selectedLabelStyle: TextStyle(fontSize: 12),
         currentIndex: currentIndex,
         onTap: _onTapped,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-            ),
+            activeIcon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.shop_2,
-            ),
-            label: 'Shop',
+            icon: Icon(Icons.shopping_cart_outlined),
+            activeIcon: Icon(Icons.shopping_cart),
+            label: 'Buy',
           ),
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.sell,
-              ),
+              icon: Icon(Icons.qr_code_scanner),
+              activeIcon: Icon(Icons.qr_code_rounded),
               label: 'Sell'),
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.more_horiz,
-              ),
+              icon: Icon(Icons.more_vert),
+              activeIcon: Icon(Icons.more_horiz),
               label: 'More'),
         ],
       ),

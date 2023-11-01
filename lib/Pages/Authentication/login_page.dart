@@ -2,12 +2,10 @@
 // import 'package:diner/Pages/Services/auth.dart';
 
 import 'package:diner/Pages/Authentication/auth_pages.dart';
-import 'package:diner/Pages/Interface/home.dart';
 import 'package:diner/Pages/Services/connection.dart';
 import 'package:diner/Pages/Services/global.dart';
 // import 'package:diner/Pages/Services/register_data_model.dart';
 import 'package:diner/Pages/Services/user_model.dart';
-import 'package:diner/Pages/User/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

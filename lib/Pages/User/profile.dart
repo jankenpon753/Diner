@@ -2,7 +2,6 @@ import 'package:diner/Pages/Services/connection.dart';
 import 'package:diner/Pages/Services/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mongo_dart/mongo_dart.dart' as Mongo;
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Profile extends StatefulWidget {
