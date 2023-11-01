@@ -10,6 +10,14 @@ class ResetPassword extends StatefulWidget {
 }
 
 class _ResetPasswordState extends State<ResetPassword> {
+  bool passwordVisible = false;
+
+  @override
+  void initState() {
+    super.initState();
+    passwordVisible = true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -33,24 +41,38 @@ class _ResetPasswordState extends State<ResetPassword> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextFormField(
+                    obscureText: passwordVisible,
                     autofocus: true,
                     decoration: InputDecoration(
                       border: UnderlineInputBorder(),
                       hintText: "Enter new password",
                       suffixIcon: IconButton(
-                        icon: Icon(Icons.visibility_off),
-                        onPressed: () {},
+                        icon: Icon(passwordVisible
+                            ? Icons.visibility_outlined
+                            : Icons.visibility_off_outlined),
+                        onPressed: () {
+                          setState(() {
+                            passwordVisible = !passwordVisible;
+                          });
+                        },
                       ),
                     ),
                   ),
                   SizedBox(height: 10),
                   TextFormField(
+                    obscureText: passwordVisible,
                     decoration: InputDecoration(
                       border: UnderlineInputBorder(),
                       hintText: "Re-enter password",
                       suffixIcon: IconButton(
-                        icon: Icon(Icons.visibility_off),
-                        onPressed: () {},
+                        icon: Icon(passwordVisible
+                            ? Icons.visibility_outlined
+                            : Icons.visibility_off_outlined),
+                        onPressed: () {
+                          setState(() {
+                            passwordVisible = !passwordVisible;
+                          });
+                        },
                       ),
                     ),
                   ),

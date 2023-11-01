@@ -17,6 +17,15 @@ class _RegistrationState extends State<Registration> {
   final userNameController = TextEditingController();
   final passwordController = TextEditingController();
   final rePasswordController = TextEditingController();
+
+  bool passwordVisible = false;
+
+  @override
+  void initState() {
+    super.initState();
+    passwordVisible = true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -58,17 +67,39 @@ class _RegistrationState extends State<Registration> {
                       SizedBox(height: 10),
                       TextFormField(
                         controller: passwordController,
+                        obscureText: passwordVisible,
                         decoration: InputDecoration(
                           border: UnderlineInputBorder(),
                           hintText: 'Password',
+                          suffixIcon: IconButton(
+                            icon: Icon(passwordVisible
+                                ? Icons.visibility_outlined
+                                : Icons.visibility_off_outlined),
+                            onPressed: () {
+                              setState(() {
+                                passwordVisible = !passwordVisible;
+                              });
+                            },
+                          ),
                         ),
                       ),
                       SizedBox(height: 10),
                       TextFormField(
                         controller: rePasswordController,
+                        obscureText: passwordVisible,
                         decoration: InputDecoration(
                           border: UnderlineInputBorder(),
                           hintText: 'Enter your password again',
+                          suffixIcon: IconButton(
+                            icon: Icon(passwordVisible
+                                ? Icons.visibility_outlined
+                                : Icons.visibility_off_outlined),
+                            onPressed: () {
+                              setState(() {
+                                passwordVisible = !passwordVisible;
+                              });
+                            },
+                          ),
                         ),
                       ),
                       SizedBox(height: 20),

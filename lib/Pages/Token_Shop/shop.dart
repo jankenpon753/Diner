@@ -17,6 +17,7 @@ class Shop extends StatefulWidget {
 
 class _BuyTokenState extends State<Shop> {
   String? action = "";
+  var userType = "buyer";
   Mongo.ObjectId? id;
   void getData() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -27,7 +28,7 @@ class _BuyTokenState extends State<Shop> {
         id = Mongo.ObjectId.fromHexString(action!);
       }
     });
-    print(id);
+    // print(id);
   }
 
   @override
@@ -52,121 +53,130 @@ class _BuyTokenState extends State<Shop> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Visibility(
-                  visible: (action == null) ? false : true,
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 30, vertical: 0),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 240,
-                          child: Image.asset('Assets/Images/diner.png'),
-                        ),
-                        SizedBox(height: 10),
-                        ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Color.fromARGB(255, 0, 204, 255),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4)),
-                              foregroundColor: Colors.orange[900],
+                  visible: ((userType == "buyer") && (action != null)),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 30, vertical: 0),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 240,
+                              child: Image.asset('Assets/Images/diner.png'),
                             ),
-                            onPressed: () async {
-                              print("$id asd");
-                              final token =
-                                  TokenModel(token: "token", isScanned: false);
-                              await MongoDB.tokenRegister(token);
-                              try {
-                                var tokenData = await MongoDB.getToken();
-                                if (tokenData != null) {
-                                  var data = TokenGetModel.fromJson(tokenData);
-                                  // print(data.id);
-                                  var tokenString = data.id!.toHexString();
-                                  await MongoDB.changeTokenData(
-                                      data.id, tokenString);
-                                  await MongoDB.addTokens(id, tokenString);
-                                  Dialog tokenDialog = Dialog(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(
-                                            6.0)), //this right here
-                                    child: SizedBox(
-                                      height: 150.0,
-                                      width: 300.0,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          Center(
-                                            child: Text("Token Number: ",
-                                                style: TextStyle(fontSize: 16)),
-                                          ),
-                                          SizedBox(
-                                            height: 7,
-                                          ),
-                                          Center(
-                                            child: Text(tokenString,
-                                                style: TextStyle(fontSize: 16)),
-                                          ),
-                                          SizedBox(
-                                            height: 17,
-                                          ),
-                                          TextButton(
-                                              onPressed: () {
-                                                Navigator.of(context).pop();
-                                              },
-                                              child: Text('Got It!',
-                                                  style: TextStyle(
-                                                      color: Colors
-                                                          .orangeAccent[700],
-                                                      fontSize: 20.0)))
-                                        ],
+                            SizedBox(height: 10),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    Color.fromARGB(255, 249, 255, 89),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(4)),
+                                foregroundColor: Colors.orange[900],
+                              ),
+                              onPressed: () async {
+                                final token = TokenModel(
+                                    token: "token", isScanned: false);
+                                await MongoDB.tokenRegister(token);
+                                try {
+                                  var tokenData = await MongoDB.getToken();
+                                  if (tokenData != null) {
+                                    var data =
+                                        TokenGetModel.fromJson(tokenData);
+                                    // print(data.id);
+                                    var tokenString = data.id!.toHexString();
+                                    await MongoDB.changeTokenData(
+                                        data.id, tokenString);
+                                    await MongoDB.addTokens(id, tokenString);
+                                    Dialog tokenDialog = Dialog(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              6.0)), //this right here
+                                      child: SizedBox(
+                                        height: 150.0,
+                                        width: 300.0,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            Center(
+                                              child: Text("Token Number: ",
+                                                  style:
+                                                      TextStyle(fontSize: 16)),
+                                            ),
+                                            SizedBox(height: 7),
+                                            Center(
+                                              child: Text(tokenString,
+                                                  style:
+                                                      TextStyle(fontSize: 16)),
+                                            ),
+                                            SizedBox(height: 17),
+                                            TextButton(
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: Text('Got It!',
+                                                    style: TextStyle(
+                                                        color: Colors
+                                                            .orangeAccent[700],
+                                                        fontSize: 20.0)))
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                  // ignore: use_build_context_synchronously
-                                  showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) =>
-                                          tokenDialog);
-                                } else {
-                                  final SnackBar snackBar = SnackbarMessage(
-                                      "TypeError: Fields didn't Match!");
+                                    );
+                                    // ignore: use_build_context_synchronously
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) =>
+                                            tokenDialog);
+                                  } else {
+                                    final SnackBar snackBar = SnackbarMessage(
+                                        "TypeError: Fields didn't Match!");
+                                    snackbarKey.currentState
+                                        ?.showSnackBar(snackBar);
+                                  }
+                                } catch (e) {
+                                  final SnackBar snackBar =
+                                      SnackbarMessage("Error: No Data Found!");
                                   snackbarKey.currentState
                                       ?.showSnackBar(snackBar);
                                 }
-                              } catch (e) {
-                                final SnackBar snackBar =
-                                    SnackbarMessage("Error: No Data Found!");
-                                snackbarKey.currentState
-                                    ?.showSnackBar(snackBar);
-                              }
-                            },
-                            child: Text(
-                              "Buy Token",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 24),
-                            )),
-                        SizedBox(
-                          height: 240,
-                          child: Image.asset('Assets/Images/diner.png'),
-                        ),
-                        SizedBox(height: 10),
-                        ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Color.fromARGB(255, 0, 204, 255),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4)),
-                              foregroundColor: Colors.orange[900],
+                              },
+                              child: Text(
+                                "Buy Token",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 24),
+                              ),
                             ),
-                            onPressed: () async {
-                              print(id);
-                            },
-                            child: Text(
-                              "Scan Token",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 24),
-                            )),
-                      ],
-                    ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Visibility(
+                  visible: ((userType == "seller") && (action != null)),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 240,
+                        child: Image.asset('Assets/Images/diner.png'),
+                      ),
+                      SizedBox(height: 10),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromARGB(255, 255, 29, 82),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4)),
+                          foregroundColor: Colors.orange[900],
+                        ),
+                        onPressed: () async {},
+                        child: Text(
+                          "Scan Token",
+                          style: TextStyle(color: Colors.white, fontSize: 24),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
