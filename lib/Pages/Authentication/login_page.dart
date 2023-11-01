@@ -29,111 +29,113 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Dialog(
+      insetPadding: EdgeInsets.symmetric(vertical: 70, horizontal: 20),
+      child: Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(Icons.close_rounded),
-          ),
+          centerTitle: true,
+          automaticallyImplyLeading: false,
           title: Text("Sign in or Register"),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            TextFormField(
-              controller: uidController,
-              decoration: InputDecoration(
-                border: UnderlineInputBorder(),
-                hintText: 'Username or Email',
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextFormField(
+                    autofocus: true,
+                    controller: uidController,
+                    decoration: InputDecoration(
+                      border: UnderlineInputBorder(),
+                      hintText: 'Username or Email',
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  TextFormField(
+                    controller: passwordController,
+                    obscureText: passwordVisible,
+                    decoration: InputDecoration(
+                      border: UnderlineInputBorder(),
+                      hintText: "Password",
+                      suffixIcon: IconButton(
+                        icon: Icon(passwordVisible
+                            ? Icons.visibility_outlined
+                            : Icons.visibility_off_outlined),
+                        onPressed: () {
+                          setState(
+                            () {
+                              passwordVisible = !passwordVisible;
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  ElevatedButton.icon(
+                      onPressed: () async {
+                        _logIn(uidController.text, passwordController.text);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.orangeAccent[700],
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4)),
+                        foregroundColor: Colors.orange[900],
+                      ),
+                      icon: Icon(
+                        Icons.login_sharp,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                      label: Text('Login',
+                          style: TextStyle(color: Colors.white, fontSize: 17))),
+                  SizedBox(height: 20),
+                  Column(
+                    children: [
+                      TextButton.icon(
+                        onPressed: () {
+                          // Navigator.pop(context);
+                          showDialog(
+                              context: context,
+                              builder: (context) => ForgotRecover());
+                        },
+                        icon: Icon(
+                          Icons.question_mark_outlined,
+                          color: Colors.white,
+                        ),
+                        label: Text(
+                          'Reset Password',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                      SizedBox(width: 30),
+                      TextButton.icon(
+                        onPressed: () {
+                          // Navigator.pop(context);
+                          showDialog(
+                              context: context,
+                              builder: (context) => Registration());
+                        },
+                        icon: Icon(
+                          Icons.app_registration_outlined,
+                          color: Colors.white,
+                        ),
+                        label: Text(
+                          'Register',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
-            SizedBox(height: 10),
-            TextFormField(
-                controller: passwordController,
-                obscureText: passwordVisible,
-                decoration: InputDecoration(
-                  border: UnderlineInputBorder(),
-                  hintText: "Password",
-                  suffixIcon: IconButton(
-                    icon: Icon(passwordVisible
-                        ? Icons.visibility_outlined
-                        : Icons.visibility_off_outlined),
-                    onPressed: () {
-                      setState(
-                        () {
-                          passwordVisible = !passwordVisible;
-                        },
-                      );
-                    },
-                  ),
-                )),
-            SizedBox(height: 10),
-            ElevatedButton.icon(
-                onPressed: () async {
-                  _logIn(uidController.text, passwordController.text);
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.orangeAccent[700],
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4)),
-                  foregroundColor: Colors.orange[900],
-                ),
-                icon: Icon(
-                  Icons.login_sharp,
-                  color: Colors.white,
-                  size: 20,
-                ),
-                label: Text('Login',
-                    style: TextStyle(color: Colors.white, fontSize: 17))),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton.icon(
-                    onPressed: () {
-                      // Navigator.pop(context);
-                      showDialog(
-                          context: context,
-                          builder: (context) => Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(20, 140, 20, 140),
-                                child: Center(child: ForgotMail()),
-                              ));
-                    },
-                    icon: Icon(
-                      Icons.question_mark_outlined,
-                      color: Colors.white,
-                    ),
-                    label: Text(
-                      'Reset Password',
-                      style: TextStyle(color: Colors.white),
-                    )),
-                SizedBox(width: 30),
-                TextButton.icon(
-                    onPressed: () {
-                      // Navigator.pop(context);
-                      showDialog(
-                          context: context,
-                          builder: (context) => Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(20, 140, 20, 140),
-                                child: Center(child: Registration()),
-                              ));
-                    },
-                    icon: Icon(
-                      Icons.app_registration_outlined,
-                      color: Colors.white,
-                    ),
-                    label: Text(
-                      'Register',
-                      style: TextStyle(color: Colors.white),
-                    )),
-              ],
-            ),
-          ]),
-        ));
+          ),
+        ),
+      ),
+    );
   }
 
   Future<void> _logIn(String username, String password) async {
@@ -146,14 +148,6 @@ class _LoginState extends State<Login> {
         await prefs.setString('user', user.id!.toHexString());
         print(prefs.getString('user'));
         Navigator.popAndPushNamed(context, '/');
-        // Navigator.of(context).pop();
-        // ignore: use_build_context_synchronously
-        // showDialog(
-        //     context: context,
-        //     builder: (context) => Padding(
-        //           padding: const EdgeInsets.fromLTRB(20, 140, 20, 140),
-        //           child: Center(child: Text("You are Logged in.")),
-        //         ));
       } else {
         final SnackBar snackBar =
             SnackbarMessage("TypeError: Fields didn't Match!");

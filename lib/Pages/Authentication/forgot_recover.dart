@@ -1,15 +1,16 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:diner/Pages/Authentication/auth_pages.dart';
 import 'package:flutter/material.dart';
 
-class ResetPassword extends StatefulWidget {
-  const ResetPassword({super.key});
+class ForgotRecover extends StatefulWidget {
+  const ForgotRecover({super.key});
 
   @override
-  State<ResetPassword> createState() => _ResetPasswordState();
+  State<ForgotRecover> createState() => _ForgotPassState();
 }
 
-class _ResetPasswordState extends State<ResetPassword> {
+class _ForgotPassState extends State<ForgotRecover> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -23,7 +24,7 @@ class _ResetPasswordState extends State<ResetPassword> {
             icon: Icon(Icons.close_rounded),
           ),
           centerTitle: true,
-          title: Text("Reset Password"),
+          title: Text("Recover"),
         ),
         body: Center(
           child: Padding(
@@ -36,9 +37,9 @@ class _ResetPasswordState extends State<ResetPassword> {
                     autofocus: true,
                     decoration: InputDecoration(
                       border: UnderlineInputBorder(),
-                      hintText: "Enter new password",
+                      hintText: "Email",
                       suffixIcon: IconButton(
-                        icon: Icon(Icons.visibility_off),
+                        icon: Icon(Icons.send),
                         onPressed: () {},
                       ),
                     ),
@@ -47,17 +48,15 @@ class _ResetPasswordState extends State<ResetPassword> {
                   TextFormField(
                     decoration: InputDecoration(
                       border: UnderlineInputBorder(),
-                      hintText: "Re-enter password",
-                      suffixIcon: IconButton(
-                        icon: Icon(Icons.visibility_off),
-                        onPressed: () {},
-                      ),
+                      hintText: "Code",
                     ),
                   ),
                   SizedBox(height: 20),
                   ElevatedButton.icon(
                       onPressed: () {
-                        Navigator.popAndPushNamed(context, '/login');
+                        showDialog(
+                            context: context,
+                            builder: (context) => ResetPassword());
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.orangeAccent[700],

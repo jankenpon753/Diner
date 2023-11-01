@@ -15,7 +15,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int currentIndex = 0;
+  int currentIndex = 3;
   String? objectid = "";
   Mongo.ObjectId? id;
   void getID() async {

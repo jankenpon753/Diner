@@ -62,11 +62,7 @@ class _MoreMenuState extends State<MoreMenu> {
                             if (action == null) {
                               showDialog(
                                 context: context,
-                                builder: (context) => Padding(
-                                  padding: const EdgeInsets.fromLTRB(
-                                      20, 100, 20, 100),
-                                  child: Center(child: Login()),
-                                ),
+                                builder: (context) => Login(),
                               );
                               // Navigator.pushNamed(context, '/login');
                             } else {
@@ -125,12 +121,7 @@ class _MoreMenuState extends State<MoreMenu> {
                           onTap: () {
                             showDialog(
                                 context: context,
-                                builder: (context) => Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          20, 140, 20, 140),
-                                      child: Center(child: About()),
-                                    ));
-                            // Navigator.pushNamed(context, '/about');
+                                builder: (context) => About());
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,

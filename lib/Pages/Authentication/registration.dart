@@ -19,19 +19,20 @@ class _RegistrationState extends State<Registration> {
   final rePasswordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('Register'),
-        ),
-        body: Center(
-            child: Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: SizedBox(
-                    height: 500,
-                    width: 400,
-                    child: Form(
-                        child: Column(children: [
+    return Dialog(
+      insetPadding: EdgeInsets.symmetric(vertical: 70, horizontal: 20),
+      child: Scaffold(
+          appBar: AppBar(
+            title: Text('Register'),
+            centerTitle: true,
+          ),
+          body: Center(
+              child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: SingleChildScrollView(
+                    child: Column(children: [
                       TextFormField(
+                        autofocus: true,
                         controller: nameController,
                         decoration: InputDecoration(
                           border: UnderlineInputBorder(),
@@ -70,15 +71,20 @@ class _RegistrationState extends State<Registration> {
                           hintText: 'Enter your password again',
                         ),
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(height: 20),
                       ElevatedButton.icon(
                           onPressed: () async {
-                            _checkUser(
-                                nameController.text,
-                                emailController.text,
-                                passwordController.text,
-                                userNameController.text);
-                            Navigator.popAndPushNamed(context, '/login');
+                            if (nameController.text != "" &&
+                                emailController.text != "" &&
+                                passwordController.text != "" &&
+                                userNameController.text != "") {
+                              await _checkUser(
+                                  nameController.text,
+                                  emailController.text,
+                                  passwordController.text,
+                                  userNameController.text);
+                              Navigator.popAndPushNamed(context, '/login');
+                            }
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.orangeAccent[700],
@@ -94,7 +100,9 @@ class _RegistrationState extends State<Registration> {
                             'Register',
                             style: TextStyle(color: Colors.white),
                           ))
-                    ]))))));
+                    ]),
+                  )))),
+    );
   }
 
   Future<void> _checkUser(

@@ -45,8 +45,15 @@ class _HomepageState extends State<Homepage> {
                       height: 40,
                       width: 40,
                       child: Center(
-                          child: CircularProgressIndicator(
-                        color: Colors.orangeAccent[700],
+                          child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CircularProgressIndicator(
+                            color: Colors.orangeAccent[700],
+                          ),
+                          SizedBox(height: 15),
+                          SizedBox(child: Text("Fetching Data..."))
+                        ],
                       )),
                     );
                   } else if (snapshot.hasData) {
