@@ -40,7 +40,10 @@ class _BuyTokenState extends State<BuyToken> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Shop')),
+      appBar: AppBar(
+        title: Text('Shop'),
+        automaticallyImplyLeading: false,
+      ),
       body: Center(
         child: SafeArea(
           child: Padding(

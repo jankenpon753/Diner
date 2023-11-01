@@ -30,7 +30,7 @@ void main() async {
         '/settings': (context) => Settings(),
         '/about': (context) => About(),
         '/moreMenu': (context) => MoreMenu(),
-        '/sell_token': (context) => SellToken()
+        '/sell_token': (context) => SellToken(),
       },
     ),
   );

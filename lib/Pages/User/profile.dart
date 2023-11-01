@@ -33,34 +33,58 @@ class _ProfileState extends State<Profile> {
                 var userData = UserModel.fromJson(snapshot.data!);
                 return Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 60),
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text('Name: ${userData.name}'),
                             SizedBox(
-                              height: 16,
+                              height: 200,
+                              width: 200,
+                              child: Image.asset('Assets/Images/meal.png'),
                             ),
-                            Text('Email: ${userData.email}'),
-                            SizedBox(
-                              height: 16,
+                            SizedBox(height: 16),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('Name'),
+                                Text('${userData.name}',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.orangeAccent[700])),
+                                SizedBox(height: 16),
+                                Text('Email'),
+                                Text('${userData.email}',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.orangeAccent[700])),
+                              ],
                             ),
-                            SizedBox(
-                              height: 32,
-                            ),
-                            TextButton.icon(
+                            SizedBox(height: 50),
+                            ElevatedButton.icon(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.orangeAccent[700],
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(4)),
+                                  foregroundColor: Colors.orange[900],
+                                ),
                                 onPressed: () async {
                                   final SharedPreferences prefs =
                                       await SharedPreferences.getInstance();
                                   // Remove data for the 'counter' key.
                                   await prefs.remove('user');
-                                  Navigator.pushReplacementNamed(context, '/');
+                                  Navigator.popAndPushNamed(context, '/');
                                 },
-                                icon: Icon(Icons.logout),
-                                label: Text('Logout'))
+                                icon: Icon(
+                                  Icons.logout,
+                                  color: Colors.white,
+                                ),
+                                label: Text(
+                                  'Logout',
+                                  style: TextStyle(color: Colors.white),
+                                ))
                           ]),
                     ],
                   ),

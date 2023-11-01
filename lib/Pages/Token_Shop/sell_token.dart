@@ -40,7 +40,10 @@ class _BuyTokenState extends State<SellToken> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Sell')),
+      appBar: AppBar(
+        title: Text('Sell'),
+        automaticallyImplyLeading: false,
+      ),
       body: Center(
         child: SafeArea(
           child: Padding(
@@ -67,7 +70,9 @@ class _BuyTokenState extends State<SellToken> {
                                   borderRadius: BorderRadius.circular(4)),
                               foregroundColor: Colors.orange[900],
                             ),
-                            onPressed: () {},
+                            onPressed: () async {
+                              print(id);
+                            },
                             child: Text(
                               "Scan Token",
                               style:

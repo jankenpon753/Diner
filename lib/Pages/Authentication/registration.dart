@@ -32,39 +32,44 @@ class _RegistrationState extends State<Registration> {
                     child: Form(
                         child: Column(children: [
                       TextFormField(
-                          controller: nameController,
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              label: Text('Name'),
-                              hintText: 'Enter your full name')),
+                        controller: nameController,
+                        decoration: InputDecoration(
+                          border: UnderlineInputBorder(),
+                          hintText: 'Name',
+                        ),
+                      ),
                       SizedBox(height: 10),
                       TextFormField(
-                          controller: emailController,
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              label: Text('Email Address'),
-                              hintText: 'Enter your email address')),
+                        controller: emailController,
+                        decoration: InputDecoration(
+                          border: UnderlineInputBorder(),
+                          hintText: 'Email Address',
+                        ),
+                      ),
                       SizedBox(height: 10),
                       TextFormField(
-                          controller: userNameController,
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              label: Text('Username'),
-                              hintText: 'Enter a username')),
+                        controller: userNameController,
+                        decoration: InputDecoration(
+                          border: UnderlineInputBorder(),
+                          hintText: 'Username',
+                        ),
+                      ),
                       SizedBox(height: 10),
                       TextFormField(
-                          controller: passwordController,
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              label: Text('Password'),
-                              hintText: 'Enter a password')),
+                        controller: passwordController,
+                        decoration: InputDecoration(
+                          border: UnderlineInputBorder(),
+                          hintText: 'Password',
+                        ),
+                      ),
                       SizedBox(height: 10),
                       TextFormField(
-                          controller: rePasswordController,
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              label: Text('Re-Password'),
-                              hintText: 'Re-enter a password')),
+                        controller: rePasswordController,
+                        decoration: InputDecoration(
+                          border: UnderlineInputBorder(),
+                          hintText: 'Enter your password again',
+                        ),
+                      ),
                       SizedBox(height: 10),
                       ElevatedButton.icon(
                           onPressed: () async {
@@ -73,10 +78,22 @@ class _RegistrationState extends State<Registration> {
                                 emailController.text,
                                 passwordController.text,
                                 userNameController.text);
-                            Navigator.pop(context, '/login');
+                            Navigator.popAndPushNamed(context, '/login');
                           },
-                          icon: Icon(Icons.create),
-                          label: Text('Register'))
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.orangeAccent[700],
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4)),
+                            foregroundColor: Colors.orange[900],
+                          ),
+                          icon: Icon(
+                            Icons.create,
+                            color: Colors.white,
+                          ),
+                          label: Text(
+                            'Register',
+                            style: TextStyle(color: Colors.white),
+                          ))
                     ]))))));
   }
 

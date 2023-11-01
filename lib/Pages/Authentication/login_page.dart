@@ -109,7 +109,7 @@ class _LoginState extends State<Login> {
                       color: Colors.white,
                     ),
                     label: Text(
-                      'Forgot password',
+                      'Reset Password',
                       style: TextStyle(color: Colors.white),
                     )),
                 SizedBox(width: 30),

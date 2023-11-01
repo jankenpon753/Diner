@@ -15,7 +15,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int currentIndex = 2;
+  int currentIndex = 0;
   String? objectid = "";
   Mongo.ObjectId? id;
   void getID() async {
@@ -35,72 +35,57 @@ class _HomeState extends State<Home> {
     getID();
   }
 
+  void _onTapped(int index) {
+    setState(() {
+      currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final List<Widget> widgetOptions = <Widget>[
+      Homepage(
+        id: id,
+      ),
+      BuyToken(),
+      SellToken(),
+      MoreMenu()
+    ];
     return Scaffold(
-      bottomNavigationBar: NavigationBar(
-        onDestinationSelected: (int index) {
-          setState(
-            () {
-              currentIndex = index;
-            },
-          );
-        },
-        elevation: 1,
-        selectedIndex: currentIndex,
-        destinations: [
-          NavigationDestination(
+      bottomNavigationBar: BottomNavigationBar(
+        unselectedItemColor: Colors.white,
+        selectedItemColor: Colors.orangeAccent[700],
+        showSelectedLabels: false,
+        currentIndex: currentIndex,
+        onTap: _onTapped,
+        items: [
+          BottomNavigationBarItem(
             icon: Icon(
               Icons.home,
-              color: Colors.orangeAccent[700],
             ),
             label: 'Home',
-            selectedIcon: Icon(
-              Icons.home_outlined,
-              color: Colors.orangeAccent[700],
-            ),
           ),
-          NavigationDestination(
+          BottomNavigationBarItem(
             icon: Icon(
               Icons.shop_2,
-              color: Colors.orangeAccent[700],
             ),
             label: 'Shop',
-            selectedIcon: Icon(
-              Icons.shop_2_outlined,
-              color: Colors.orangeAccent[700],
-            ),
           ),
-          NavigationDestination(
+          BottomNavigationBarItem(
               icon: Icon(
                 Icons.sell,
-                color: Colors.orangeAccent[700],
-              ),
-              selectedIcon: Icon(
-                Icons.sell_outlined,
-                color: Colors.orangeAccent[700],
               ),
               label: 'Sell'),
-          NavigationDestination(
+          BottomNavigationBarItem(
               icon: Icon(
                 Icons.more_horiz,
-                color: Colors.orangeAccent[700],
-              ),
-              selectedIcon: Icon(
-                Icons.more_horiz_outlined,
-                color: Colors.orangeAccent[700],
               ),
               label: 'More'),
         ],
       ),
-      body: <Widget>[
-        Homepage(
-          id: id,
-        ),
-        BuyToken(),
-        SellToken(),
-        MoreMenu()
-      ][currentIndex],
+      body: Center(
+        child: widgetOptions.elementAt(currentIndex),
+      ),
     );
   }
 }
