@@ -8,14 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:mongo_dart/mongo_dart.dart' as Mongo;
 import 'package:shared_preferences/shared_preferences.dart';
 
-class BuyToken extends StatefulWidget {
-  const BuyToken({super.key});
+class Shop extends StatefulWidget {
+  const Shop({super.key});
 
   @override
-  State<BuyToken> createState() => _BuyTokenState();
+  State<Shop> createState() => _BuyTokenState();
 }
 
-class _BuyTokenState extends State<BuyToken> {
+class _BuyTokenState extends State<Shop> {
   String? action = "";
   Mongo.ObjectId? id;
   void getData() async {
@@ -142,6 +142,26 @@ class _BuyTokenState extends State<BuyToken> {
                             },
                             child: Text(
                               "Buy Token",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 24),
+                            )),
+                        SizedBox(
+                          height: 240,
+                          child: Image.asset('Assets/Images/diner.png'),
+                        ),
+                        SizedBox(height: 10),
+                        ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color.fromARGB(255, 0, 204, 255),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4)),
+                              foregroundColor: Colors.orange[900],
+                            ),
+                            onPressed: () async {
+                              print(id);
+                            },
+                            child: Text(
+                              "Scan Token",
                               style:
                                   TextStyle(color: Colors.black, fontSize: 24),
                             )),

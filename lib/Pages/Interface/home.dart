@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:diner/Pages/Interface/interface_pages.dart';
-import 'package:diner/Pages/Token_Shop/sell_token.dart';
 import 'package:diner/Pages/Token_Shop/token_shop_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:mongo_dart/mongo_dart.dart' as Mongo;
@@ -15,7 +14,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int currentIndex = 3;
+  int currentIndex = 0;
   String? objectid = "";
   Mongo.ObjectId? id;
   void getID() async {
@@ -45,8 +44,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final List<Widget> widgetOptions = <Widget>[
       Homepage(id: id),
-      BuyToken(),
-      SellToken(),
+      Shop(),
       MoreMenu()
     ];
     return Scaffold(
@@ -65,12 +63,8 @@ class _HomeState extends State<Home> {
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart_outlined),
             activeIcon: Icon(Icons.shopping_cart),
-            label: 'Buy',
+            label: 'Shop',
           ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.qr_code_scanner),
-              activeIcon: Icon(Icons.qr_code_rounded),
-              label: 'Sell'),
           BottomNavigationBarItem(
               icon: Icon(Icons.more_vert),
               activeIcon: Icon(Icons.more_horiz),
