@@ -68,7 +68,7 @@ class _HomeState extends State<Home> {
           BottomNavigationBarItem(
               icon: Icon(Icons.more_vert),
               activeIcon: Icon(Icons.more_horiz),
-              label: 'More'),
+              label: 'Menu'),
         ],
       ),
       body: Center(

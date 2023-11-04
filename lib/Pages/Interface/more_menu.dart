@@ -39,6 +39,10 @@ class _MoreMenuState extends State<MoreMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Menu'),
+        automaticallyImplyLeading: false,
+      ),
       body: Center(
         child: SafeArea(
           child: Padding(
@@ -52,107 +56,96 @@ class _MoreMenuState extends State<MoreMenu> {
                 ),
                 SizedBox(height: 40),
                 Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      SizedBox(
-                        height: 50,
-                        width: 400,
-                        child: InkWell(
-                          onTap: () {
-                            if (action == null) {
-                              showDialog(
-                                context: context,
-                                builder: (context) => Login(),
-                              );
-                              // Navigator.pushNamed(context, '/login');
-                            } else {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Profile(
-                                          id: (id != null) ? id : null)));
-                            }
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Icon(
-                                Icons.person,
-                                size: 25,
-                                color: Colors.orangeAccent[700],
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                'Profile',
-                                style: TextStyle(fontSize: 20),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 50,
-                        width: 400,
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/settings');
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Icon(
-                                Icons.settings,
-                                size: 25,
-                                color: Colors.orangeAccent[700],
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                'Settings',
-                                style: TextStyle(fontSize: 20),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 50,
-                        width: 400,
-                        child: InkWell(
-                          onTap: () {
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      width: 400,
+                      child: InkWell(
+                        onTap: () {
+                          if (action == null) {
                             showDialog(
-                                context: context,
-                                builder: (context) => About());
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Icon(
-                                Icons.info_outlined,
-                                size: 25,
-                                color: Colors.orangeAccent[700],
+                              context: context,
+                              builder: (context) => Login(),
+                            );
+                          } else {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    Profile(id: (id != null) ? id : null),
                               ),
-                              SizedBox(width: 10),
-                              Text(
-                                'About Diner',
-                                style: TextStyle(fontSize: 20),
-                              ),
-                            ],
-                          ),
+                            );
+                          }
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(
+                              Icons.person,
+                              size: 25,
+                              color: Colors.orangeAccent[700],
+                            ),
+                            SizedBox(width: 10),
+                            Text(
+                              'Profile',
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ],
                         ),
-                      )
-                    ]),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     IconButton(
-                //         onPressed: () {}, icon: Icon(Icons.coffee, size: 40)),
-                //     SizedBox(width: 30),
-                //     IconButton(
-                //       onPressed: () {},
-                //       icon: Icon(Icons.perm_contact_cal_sharp, size: 40),
-                //     )
-                //   ],
-                // )
+                      ),
+                    ),
+                    SizedBox(
+                      height: 50,
+                      width: 400,
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/settings');
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(
+                              Icons.settings,
+                              size: 25,
+                              color: Colors.orangeAccent[700],
+                            ),
+                            SizedBox(width: 10),
+                            Text(
+                              'Settings',
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 50,
+                      width: 400,
+                      child: InkWell(
+                        onTap: () {
+                          showDialog(
+                              context: context, builder: (context) => About());
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(
+                              Icons.info_outlined,
+                              size: 25,
+                              color: Colors.orangeAccent[700],
+                            ),
+                            SizedBox(width: 10),
+                            Text(
+                              'About Diner',
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ],
             ),
           ),

@@ -19,7 +19,8 @@ class Shop extends StatefulWidget {
 
 class _BuyTokenState extends State<Shop> {
   String? action = "";
-  var userType = "buyer";
+  // var userType = "buyer";
+  var userType = "seller";
   Mongo.ObjectId? id;
   void getData() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -55,7 +56,7 @@ class _BuyTokenState extends State<Shop> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Visibility(
-                  visible: ((userType == "seller") && (action != null)),
+                  visible: ((userType == "buyer") && (action != null)),
                   child: Column(
                     children: [
                       Padding(
@@ -157,7 +158,7 @@ class _BuyTokenState extends State<Shop> {
                   ),
                 ),
                 Visibility(
-                  visible: ((userType == "buyer") && (action != null)),
+                  visible: ((userType == "seller") && (action != null)),
                   child: Column(
                     children: [
                       SizedBox(
@@ -179,9 +180,8 @@ class _BuyTokenState extends State<Shop> {
                           if (cameraScanResult != null) {
                             String action =
                                 await MongoDB.deleteToken(id, cameraScanResult);
-                            print(id);
-                            print(cameraScanResult);
                             print(action);
+                            print(cameraScanResult);
                           }
                         },
                         child: Text(

@@ -15,14 +15,17 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  var userType = "buyer";
   MongoDB mongoDB = MongoDB();
   @override
   void initState() {
     // TODO: implement initState
-    super.initState();
-    Timer.periodic(const Duration(seconds: 4), (timer) async {
-      await mongoDB.getTokenList(widget.id);
-    });
+    if (userType == "buyer") {
+      super.initState();
+      Timer.periodic(const Duration(seconds: 4), (timer) async {
+        await mongoDB.getTokenList(widget.id);
+      });
+    }
   }
 
   @override
@@ -36,83 +39,117 @@ class _HomepageState extends State<Homepage> {
         child: SafeArea(
           child: SizedBox(
             height: double.infinity,
-            width: 400,
+            width: 270,
             child: StreamBuilder(
-                stream: mongoDB.tokenController.stream,
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Container(
-                      height: 40,
-                      width: 40,
-                      child: Center(
-                          child: Column(
+              stream: mongoDB.tokenController.stream,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return SizedBox(
+                    height: 40,
+                    width: 40,
+                    child: Center(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CircularProgressIndicator(
-                            color: Colors.orangeAccent[700],
+                          Visibility(
+                            visible: (userType == "seller"),
+                            child: const SizedBox(
+                              child: Text(
+                                "This page hasn't been implemented for seller side.",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            ),
                           ),
-                          SizedBox(height: 15),
-                          SizedBox(child: Text("Fetching Data..."))
+                          Visibility(
+                            visible: (userType == "buyer"),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CircularProgressIndicator(
+                                  color: Colors.orangeAccent[700],
+                                ),
+                                const SizedBox(height: 15),
+                                const SizedBox(child: Text("Fetching Data..."))
+                              ],
+                            ),
+                          ),
                         ],
-                      )),
-                    );
-                  } else if (snapshot.hasData) {
-                    return ListView.builder(
-                        itemCount:
-                            UserModel.fromJson(snapshot.data!).tokens.length,
-                        itemBuilder: (context, index) {
-                          var userData = UserModel.fromJson(snapshot.data!);
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 10),
-                            child: GestureDetector(
-                              onTap: () {
-                                Dialog tokenDialog = Dialog(
-                                  backgroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(
-                                          12.0)), //this right here
-                                  child: Container(
-                                    height: 300.0,
-                                    width: 300.0,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        QrImageView(
-                                          data: '${userData.tokens[index]}',
-                                          version: QrVersions.auto,
-                                          size: 250.0,
-                                        ),
-                                      ],
+                      ),
+                    ),
+                  );
+                } else if (snapshot.hasData) {
+                  return ListView.builder(
+                    itemCount: UserModel.fromJson(snapshot.data!).tokens.length,
+                    itemBuilder: (context, index) {
+                      var userData = UserModel.fromJson(snapshot.data!);
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 10),
+                        child: GestureDetector(
+                          onTap: () {
+                            Dialog tokenDialog = Dialog(
+                              backgroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                      12.0)), //this right here
+                              child: SizedBox(
+                                height: 290.0,
+                                width: 290.0,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    QrImageView(
+                                      data: '${userData.tokens[index]}',
+                                      version: QrVersions.auto,
+                                      size: 255.0,
                                     ),
-                                  ),
-                                );
-                                showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) =>
-                                        tokenDialog);
-                              },
-                              child: Container(
-                                height: 40,
+                                  ],
+                                ),
+                              ),
+                            );
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) => tokenDialog);
+                          },
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 45,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(6),
                                   color: Colors.orangeAccent[700],
                                 ),
                                 child: Center(
-                                    child: Text(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      SizedBox(
+                                        height: 40,
+                                        child: Image.asset(
+                                            'Assets/Images/fast-food.png'),
+                                      ),
+                                      const SizedBox(width: 15),
+                                      Text(
                                         '${userData.name} : Token - ${index + 1}',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.black,
                                             fontSize: 20,
-                                            fontWeight: FontWeight.bold))),
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
-                            ),
-                          );
-                        });
-                  } else {
-                    return const Center(
-                        child: SizedBox(
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                } else {
+                  return const Center(
+                    child: SizedBox(
                       height: 400,
                       width: 250,
                       child: Column(
@@ -129,9 +166,11 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ],
                       ),
-                    ));
-                  }
-                }),
+                    ),
+                  );
+                }
+              },
+            ),
           ),
         ),
       ),

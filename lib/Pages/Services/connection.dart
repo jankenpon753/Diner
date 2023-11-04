@@ -78,6 +78,16 @@ class MongoDB {
     }
   }
 
+  static Future<void> changeTokenScan(String value) async {
+    try {
+      await dataBase
+          .collection('Token')
+          .updateOne({"token": value}, modify.set("isScanned", true));
+    } catch (e) {
+      return;
+    }
+  }
+
   static Future<void> changeUserToken(ObjectId? id, String value) async {
     try {
       await dataBase
@@ -179,6 +189,7 @@ class MongoDB {
         await dataBase
             .collection('RegisterUser')
             .updateOne({"_id": id}, modify.set("tokens", userData['tokens']));
+        await changeTokenScan(token);
       }
       return 'Deleted';
     } catch (e) {
