@@ -230,6 +230,36 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "permission_handler",
+      "rootUri": "file:///C:/Users/siraj/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler-11.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
+      "name": "permission_handler_android",
+      "rootUri": "file:///C:/Users/siraj/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_android-11.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
+      "name": "permission_handler_apple",
+      "rootUri": "file:///C:/Users/siraj/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_apple-9.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
+      "name": "permission_handler_platform_interface",
+      "rootUri": "file:///C:/Users/siraj/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_platform_interface-3.12.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "permission_handler_windows",
+      "rootUri": "file:///C:/Users/siraj/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_windows-0.1.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "platform",
       "rootUri": "file:///C:/Users/siraj/AppData/Local/Pub/Cache/hosted/pub.dev/platform-3.1.2",
       "packageUri": "lib/",
@@ -434,7 +464,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2023-11-04T12:56:11.365887Z",
+  "generated": "2023-11-04T17:53:39.724254Z",
   "generator": "pub",
   "generatorVersion": "3.1.2"
 }

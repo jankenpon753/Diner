@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:mongo_dart/mongo_dart.dart' as Mongo;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:qrscan/qrscan.dart' as scanner;
+import 'package:permission_handler/permission_handler.dart';
 
 class Shop extends StatefulWidget {
   const Shop({super.key});
@@ -172,6 +173,7 @@ class _BuyTokenState extends State<Shop> {
                           foregroundColor: Colors.orange[900],
                         ),
                         onPressed: () async {
+                          await Permission.camera.request();
                           String? cameraScanResult = await scanner.scan();
                           if (cameraScanResult != null) {
                             String action =

@@ -22,5 +22,6 @@ com.example.diner.app-rs-20 C:\Users\siraj\Desktop\Diner\build\app\generated\res
 com.example.diner.app-mergeDebugResources-21 C:\Users\siraj\Desktop\Diner\build\app\intermediates\incremental\debug\mergeDebugResources\merged.dir
 com.example.diner.app-mergeDebugResources-22 C:\Users\siraj\Desktop\Diner\build\app\intermediates\incremental\debug\mergeDebugResources\stripped.dir
 com.example.diner.app-merged_res-23 C:\Users\siraj\Desktop\Diner\build\app\intermediates\merged_res\debug
-com.example.diner.app-packaged_res-24 C:\Users\siraj\Desktop\Diner\build\qrscan\intermediates\packaged_res\debug
-com.example.diner.app-packaged_res-25 C:\Users\siraj\Desktop\Diner\build\shared_preferences_android\intermediates\packaged_res\debug
+com.example.diner.app-packaged_res-24 C:\Users\siraj\Desktop\Diner\build\permission_handler_android\intermediates\packaged_res\debug
+com.example.diner.app-packaged_res-25 C:\Users\siraj\Desktop\Diner\build\qrscan\intermediates\packaged_res\debug
+com.example.diner.app-packaged_res-26 C:\Users\siraj\Desktop\Diner\build\shared_preferences_android\intermediates\packaged_res\debug
