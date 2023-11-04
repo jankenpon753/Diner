@@ -4,7 +4,7 @@
             "outputFile": "com.example.diner.app-mergeDebugResources-21:/values-h320dp-port-v13/values-h320dp-port-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\siraj\\.gradle\\caches\\transforms-3\\5cc8db564d46f28c055925bb471009a5\\transformed\\material-1.3.0\\res\\values-h320dp-port-v13\\values-h320dp-port-v13.xml",
+                    "source": "/Users/md.tajim/.gradle/caches/transforms-3/5cc8db564d46f28c055925bb471009a5/transformed/material-1.3.0/res/values-h320dp-port-v13/values-h320dp-port-v13.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

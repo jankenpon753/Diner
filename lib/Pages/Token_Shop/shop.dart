@@ -175,9 +175,12 @@ class _BuyTokenState extends State<Shop> {
                         onPressed: () async {
                           await Permission.camera.request();
                           String? cameraScanResult = await scanner.scan();
+
                           if (cameraScanResult != null) {
                             String action =
                                 await MongoDB.deleteToken(id, cameraScanResult);
+                            print(id);
+                            print(cameraScanResult);
                             print(action);
                           }
                         },
