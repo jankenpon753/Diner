@@ -170,11 +170,19 @@ class MongoDB {
     }
   }
 
-  static Future<void> deleteUser(ObjectId? id) async {
+  static Future<String> deleteToken(ObjectId? id, String token) async {
     try {
-      await dataBase.collection('Register').remove({"_id": id});
+      final userData =
+          await dataBase.collection('RegisterUser').findOne({"_id": id});
+      if (userData != null) {
+        await userData['tokens'].remove(token);
+        await dataBase
+            .collection('RegisterUser')
+            .updateOne({"_id": id}, modify.set("tokens", userData['tokens']));
+      }
+      return 'Deleted';
     } catch (e) {
-      return;
+      return 'Failed';
     }
   }
 }

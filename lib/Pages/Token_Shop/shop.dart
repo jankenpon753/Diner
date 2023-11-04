@@ -7,6 +7,7 @@ import 'package:diner/Pages/Services/token_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mongo_dart/mongo_dart.dart' as Mongo;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:qrscan/qrscan.dart' as scanner;
 
 class Shop extends StatefulWidget {
   const Shop({super.key});
@@ -53,7 +54,7 @@ class _BuyTokenState extends State<Shop> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Visibility(
-                  visible: ((userType == "buyer") && (action != null)),
+                  visible: ((userType == "seller") && (action != null)),
                   child: Column(
                     children: [
                       Padding(
@@ -155,7 +156,7 @@ class _BuyTokenState extends State<Shop> {
                   ),
                 ),
                 Visibility(
-                  visible: ((userType == "seller") && (action != null)),
+                  visible: ((userType == "buyer") && (action != null)),
                   child: Column(
                     children: [
                       SizedBox(
@@ -170,7 +171,14 @@ class _BuyTokenState extends State<Shop> {
                               borderRadius: BorderRadius.circular(4)),
                           foregroundColor: Colors.orange[900],
                         ),
-                        onPressed: () async {},
+                        onPressed: () async {
+                          String? cameraScanResult = await scanner.scan();
+                          if (cameraScanResult != null) {
+                            String action =
+                                await MongoDB.deleteToken(id, cameraScanResult);
+                            print(action);
+                          }
+                        },
                         child: Text(
                           "Scan Token",
                           style: TextStyle(color: Colors.white, fontSize: 24),
