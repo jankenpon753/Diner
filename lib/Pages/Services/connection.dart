@@ -150,6 +150,16 @@ class MongoDB {
     }
   }
 
+  static Future<bool> getRole(ObjectId? id) async {
+    try {
+      final userData =
+          await dataBase.collection('RegisterUser').findOne({"_id": id});
+      return userData['role'];
+    } catch (e) {
+      return true;
+    }
+  }
+
   static Future<Map<String, dynamic>?> checkUserData(String number) async {
     try {
       var data =
@@ -163,18 +173,18 @@ class MongoDB {
   static Future<void> forgetPassword(String number, String value) async {
     try {
       await dataBase
-          .collection('Register')
+          .collection('RegisterUser')
           .updateOne({"number": number}, modify.set("password", value));
     } catch (e) {
       return;
     }
   }
 
-  static Future<void> changePassword(ObjectId? id, String value) async {
+  static Future<void> resetPassword(String email, String value) async {
     try {
       await dataBase
-          .collection('Register')
-          .updateOne({"_id": id}, modify.set("password", value));
+          .collection('RegisterUser')
+          .updateOne({"email": email}, modify.set("password", value));
     } catch (e) {
       return;
     }

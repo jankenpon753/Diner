@@ -30,8 +30,9 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      insetPadding: EdgeInsets.symmetric(vertical: 70, horizontal: 20),
+      insetPadding: EdgeInsets.symmetric(vertical: 19, horizontal: 20),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           centerTitle: true,
           automaticallyImplyLeading: false,
@@ -43,6 +44,7 @@ class _LoginState extends State<Login> {
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   TextFormField(
                     autofocus: true,

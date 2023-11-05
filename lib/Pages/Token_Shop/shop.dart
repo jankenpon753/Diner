@@ -19,8 +19,8 @@ class Shop extends StatefulWidget {
 
 class _BuyTokenState extends State<Shop> {
   String? action = "";
-  // var userType = "buyer";
-  var userType = "seller";
+
+  var userType = false;
   Mongo.ObjectId? id;
   void getData() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -31,7 +31,8 @@ class _BuyTokenState extends State<Shop> {
         id = Mongo.ObjectId.fromHexString(action!);
       }
     });
-    // print(id);
+    userType = await MongoDB.getRole(id);
+    setState(() {});
   }
 
   @override
@@ -56,7 +57,7 @@ class _BuyTokenState extends State<Shop> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Visibility(
-                  visible: ((userType == "buyer") && (action != null)),
+                  visible: ((userType) && (action != null)),
                   child: Column(
                     children: [
                       Padding(
@@ -158,7 +159,7 @@ class _BuyTokenState extends State<Shop> {
                   ),
                 ),
                 Visibility(
-                  visible: ((userType == "seller") && (action != null)),
+                  visible: ((!userType) && (action != null)),
                   child: Column(
                     children: [
                       SizedBox(

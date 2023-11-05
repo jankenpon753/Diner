@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 
 class ResetPassword extends StatefulWidget {
+  // final String email;
   const ResetPassword({super.key});
+  // const ResetPassword({super.key, required this.email});
 
   @override
   State<ResetPassword> createState() => _ResetPasswordState();
@@ -21,7 +23,7 @@ class _ResetPasswordState extends State<ResetPassword> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      insetPadding: EdgeInsets.symmetric(vertical: 70, horizontal: 20),
+      insetPadding: EdgeInsets.symmetric(vertical: 80, horizontal: 20),
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -79,7 +81,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   SizedBox(height: 20),
                   ElevatedButton.icon(
                       onPressed: () {
-                        Navigator.popAndPushNamed(context, '/login');
+                        // Navigator.popAndPushNamed(context, '/login');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.orangeAccent[700],

@@ -12,6 +12,7 @@ class UserModel {
   String email;
   String username;
   String password;
+  bool role;
   List<dynamic> tokens;
 
   UserModel({
@@ -20,6 +21,7 @@ class UserModel {
     required this.email,
     required this.username,
     required this.password,
+    required this.role,
     required this.tokens,
   });
 
@@ -29,6 +31,7 @@ class UserModel {
         email: json["email"],
         username: json["username"],
         password: json["password"],
+        role: json["role"],
         tokens: List<dynamic>.from(json["tokens"].map((x) => x)),
       );
 
@@ -38,6 +41,7 @@ class UserModel {
         "email": email,
         "username": username,
         "password": password,
+        "role": role,
         "tokens": List<dynamic>.from(tokens.map((x) => x)),
       };
 }

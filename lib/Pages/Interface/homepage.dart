@@ -15,17 +15,21 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  var userType = "buyer";
+  var userType = true;
   MongoDB mongoDB = MongoDB();
-  @override
+
+  void getData() async {
+    userType = await MongoDB.getRole(widget.id);
+    setState(() {});
+  }
+
   void initState() {
     // TODO: implement initState
-    if (userType == "buyer") {
-      super.initState();
-      Timer.periodic(const Duration(seconds: 4), (timer) async {
-        await mongoDB.getTokenList(widget.id);
-      });
-    }
+    getData();
+    super.initState();
+    Timer.periodic(const Duration(seconds: 4), (timer) async {
+      await mongoDB.getTokenList(widget.id);
+    });
   }
 
   @override
@@ -39,7 +43,7 @@ class _HomepageState extends State<Homepage> {
         child: SafeArea(
           child: SizedBox(
             height: double.infinity,
-            width: 270,
+            width: 350,
             child: StreamBuilder(
               stream: mongoDB.tokenController.stream,
               builder: (context, snapshot) {
@@ -52,7 +56,7 @@ class _HomepageState extends State<Homepage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Visibility(
-                            visible: (userType == "seller"),
+                            visible: (!userType),
                             child: const SizedBox(
                               child: Text(
                                 "This page hasn't been implemented for seller side.",
@@ -62,7 +66,7 @@ class _HomepageState extends State<Homepage> {
                             ),
                           ),
                           Visibility(
-                            visible: (userType == "buyer"),
+                            visible: (userType),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [

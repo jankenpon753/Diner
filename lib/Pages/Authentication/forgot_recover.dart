@@ -14,7 +14,7 @@ class _ForgotPassState extends State<ForgotRecover> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      insetPadding: EdgeInsets.symmetric(vertical: 70, horizontal: 20),
+      insetPadding: EdgeInsets.symmetric(vertical: 80, horizontal: 20),
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
