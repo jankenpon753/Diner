@@ -32,7 +32,7 @@ class _LoginState extends State<Login> {
     return Dialog(
       insetPadding: EdgeInsets.symmetric(vertical: 19, horizontal: 20),
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         appBar: AppBar(
           centerTitle: true,
           automaticallyImplyLeading: false,

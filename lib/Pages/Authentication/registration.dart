@@ -31,6 +31,7 @@ class _RegistrationState extends State<Registration> {
     return Dialog(
       insetPadding: EdgeInsets.symmetric(vertical: 80, horizontal: 20),
       child: Scaffold(
+        resizeToAvoidBottomInset: true,
         appBar: AppBar(
           title: Text('Register'),
           centerTitle: true,

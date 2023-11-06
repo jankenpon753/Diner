@@ -4,6 +4,7 @@ import 'package:diner/Pages/Authentication/auth_pages.dart';
 import 'package:diner/Pages/Interface/about.dart';
 import 'package:diner/Pages/User/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:mongo_dart/mongo_dart.dart' as Mongo;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -50,9 +51,9 @@ class _MoreMenuState extends State<MoreMenu> {
             child: Column(
               children: [
                 SizedBox(
-                  height: 240,
-                  width: 200,
-                  child: Image.asset('Assets/Images/menu.png'),
+                  height: 260,
+                  width: 300,
+                  child: Lottie.asset('Assets/Images/menu.json'),
                 ),
                 SizedBox(height: 40),
                 Column(

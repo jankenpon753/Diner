@@ -25,6 +25,7 @@ class _ResetPasswordState extends State<ResetPassword> {
     return Dialog(
       insetPadding: EdgeInsets.symmetric(vertical: 80, horizontal: 20),
       child: Scaffold(
+        resizeToAvoidBottomInset: true,
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {

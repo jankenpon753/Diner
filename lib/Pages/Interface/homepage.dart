@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:diner/Pages/Services/connection.dart';
 import 'package:diner/Pages/Services/user_model.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:mongo_dart/mongo_dart.dart' as Mongo;
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -70,9 +71,13 @@ class _HomepageState extends State<Homepage> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                CircularProgressIndicator(
-                                  color: Colors.orangeAccent[700],
-                                ),
+                                // CircularProgressIndicator(
+                                //   color: Colors.orangeAccent[700],
+                                // ),
+                                SizedBox(
+                                    height: 100,
+                                    child: Lottie.asset(
+                                        'Assets/Images/loading.json')),
                                 const SizedBox(height: 15),
                                 const SizedBox(child: Text("Fetching Data..."))
                               ],
@@ -129,11 +134,13 @@ class _HomepageState extends State<Homepage> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       SizedBox(
-                                        height: 40,
-                                        child: Image.asset(
-                                            'Assets/Images/fast-food.png'),
+                                        height: 35,
+                                        // child: Image.asset(
+                                        //     'Assets/Images/foods.json'),
+                                        child: Lottie.asset(
+                                            'Assets/Images/foods.json'),
                                       ),
-                                      const SizedBox(width: 15),
+                                      const SizedBox(width: 10),
                                       Text(
                                         '${userData.name} : Token - ${index + 1}',
                                         style: const TextStyle(

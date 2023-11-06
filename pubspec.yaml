@@ -41,6 +41,7 @@ dependencies:
   qr_flutter: ^4.1.0
   qrscan: ^0.3.3
   permission_handler: ^11.0.1
+  lottie: ^2.7.0
 
 dev_dependencies:
   flutter_test:

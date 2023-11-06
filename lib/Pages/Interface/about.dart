@@ -23,7 +23,7 @@ class _AboutState extends State<About> {
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(15.0),
-            child: Image.asset('Assets/Images/fried-rice.png'),
+            child: Image.asset('Assets/Images/diner.png'),
           ),
         ),
       ),
