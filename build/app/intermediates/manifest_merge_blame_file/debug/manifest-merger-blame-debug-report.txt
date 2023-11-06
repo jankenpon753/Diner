@@ -49,8 +49,8 @@
 30        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 30-->[androidx.core:core:1.6.0] /Users/md.tajim/.gradle/caches/transforms-3/7e9df2ac2213a6bd3cef0f2f27870d79/transformed/core-1.6.0/AndroidManifest.xml:24:18-86
 31        android:debuggable="true"
-32        android:icon="@mipmap/ic_launcher"
-33        android:label="diner" >
+32        android:icon="@mipmap/launcher_icon"
+33        android:label="Diner" >
 34        <activity
 35            android:name="com.example.diner.MainActivity"
 36            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"

@@ -5,6 +5,7 @@ import 'package:diner/Pages/Services/global.dart';
 import 'package:diner/Pages/Services/token_get_model.dart';
 import 'package:diner/Pages/Services/token_model.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:mongo_dart/mongo_dart.dart' as Mongo;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:qrscan/qrscan.dart' as scanner;
@@ -19,9 +20,9 @@ class Shop extends StatefulWidget {
 
 class _BuyTokenState extends State<Shop> {
   String? action = "";
-
   var userType = false;
   Mongo.ObjectId? id;
+
   void getData() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     // TODO: implement initState
@@ -97,12 +98,17 @@ class _BuyTokenState extends State<Shop> {
                                           borderRadius: BorderRadius.circular(
                                               6.0)), //this right here
                                       child: SizedBox(
-                                        height: 150.0,
+                                        height: 300.0,
                                         width: 300.0,
                                         child: Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: <Widget>[
+                                            Lottie.asset(
+                                              'Assets/Images/bought.json',
+                                              repeat: false,
+                                              height: 150,
+                                            ),
                                             Center(
                                               child: Text("Token Number: ",
                                                   style:
@@ -114,16 +120,18 @@ class _BuyTokenState extends State<Shop> {
                                                   style:
                                                       TextStyle(fontSize: 16)),
                                             ),
-                                            SizedBox(height: 17),
                                             TextButton(
-                                                onPressed: () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                                child: Text('Got It!',
-                                                    style: TextStyle(
-                                                        color: Colors
-                                                            .orangeAccent[700],
-                                                        fontSize: 20.0)))
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: Text(
+                                                'Got It!',
+                                                style: TextStyle(
+                                                    color: Colors
+                                                        .orangeAccent[700],
+                                                    fontSize: 20.0),
+                                              ),
+                                            ),
                                           ],
                                         ),
                                       ),

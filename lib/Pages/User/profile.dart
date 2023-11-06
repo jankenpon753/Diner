@@ -13,6 +13,24 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  var userType = false;
+  String? action = "";
+
+  Mongo.ObjectId? id;
+
+  void getData() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    // TODO: implement initState
+    setState(() {
+      action = prefs.getString('user');
+      if (action != null) {
+        id = Mongo.ObjectId.fromHexString(action!);
+      }
+    });
+    userType = await MongoDB.getRole(id);
+    setState(() {});
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -59,6 +77,22 @@ class _ProfileState extends State<Profile> {
                                 style: TextStyle(
                                     fontSize: 20,
                                     color: Colors.orangeAccent[700])),
+                            SizedBox(height: 16),
+                            Text('Role'),
+                            Visibility(
+                              visible: (userType),
+                              child: Text('Buyer',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.orangeAccent[700])),
+                            ),
+                            Visibility(
+                              visible: (!userType),
+                              child: Text('Seller',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.orangeAccent[700])),
+                            ),
                           ],
                         ),
                         SizedBox(height: 50),

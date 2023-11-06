@@ -2337,6 +2337,7 @@ mipmap ic_back
 mipmap ic_launcher
 mipmap ic_light
 mipmap ic_photo
+mipmap launcher_icon
 plurals mtrl_badge_content_description
 raw beep
 string abc_action_bar_home_description

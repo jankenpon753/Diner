@@ -2336,6 +2336,7 @@ int mipmap ic_back 0x7f0c0000
 int mipmap ic_launcher 0x7f0c0001
 int mipmap ic_light 0x7f0c0002
 int mipmap ic_photo 0x7f0c0003
+int mipmap launcher_icon 0x7f0c0004
 int plurals mtrl_badge_content_description 0x7f0d0000
 int raw beep 0x7f0e0000
 int string abc_action_bar_home_description 0x7f0f0000
